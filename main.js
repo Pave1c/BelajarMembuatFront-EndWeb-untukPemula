@@ -96,3 +96,17 @@ function deleteBook(bookId) {
     saveBooks(); // Save to localStorage
     renderBooks(); // Render all books
 }
+
+// Function to edit a book (Basic implementation)
+function editBook(bookId) {
+    const book = books.find(b => b.id === bookId);
+    if (book) {
+        document.getElementById('bookFormTitle').value = book.title;
+        document.getElementById('bookFormAuthor').value = book.author;
+        document.getElementById('bookFormYear').value = book.year;
+        document.getElementById('bookFormIsComplete').checked = book.isComplete;
+
+        // Optionally remove the book from the array for editing
+        deleteBook(bookId);
+    }
+}
