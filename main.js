@@ -120,3 +120,9 @@ document.getElementById('searchBook').addEventListener('submit', function(event)
     const searchQuery = document.getElementById('searchBookTitle').value; // Get the search input
     renderBooks(searchQuery); // Render books based on the search query
 });
+
+// Initial load of books from localStorage
+loadBooks();
+
+// Initial render
+renderBooks();
