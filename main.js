@@ -79,3 +79,13 @@ function addBook(event) {
     renderBooks(); // Render the updated book list
     document.getElementById('bookForm').reset(); // Reset the form fields
 }
+
+// Function to toggle book completion status
+function toggleComplete(bookId) {
+    const book = books.find(b => b.id === bookId);
+    if (book) {
+        book.isComplete = !book.isComplete;
+        saveBooks(); // Save to localStorage
+        renderBooks(); // Render all books
+    }
+}
