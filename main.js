@@ -89,3 +89,10 @@ function toggleComplete(bookId) {
         renderBooks(); // Render all books
     }
 }
+
+// Function to delete a book
+function deleteBook(bookId) {
+    books = books.filter(b => b.id !== bookId);
+    saveBooks(); // Save to localStorage
+    renderBooks(); // Render all books
+}
