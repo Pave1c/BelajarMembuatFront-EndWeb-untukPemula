@@ -49,3 +49,33 @@ function renderBooks(searchQuery = '') {
         }
     });
 }
+
+// Function to add a new book
+function addBook(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    const title = document.getElementById('bookFormTitle').value.trim(); // Get the title and trim whitespace
+    const author = document.getElementById('bookFormAuthor').value.trim(); // Get the author and trim whitespace
+    const year = document.getElementById('bookFormYear').value.trim(); // Get the year and trim whitespace
+    const isComplete = document.getElementById('bookFormIsComplete').checked; // Get the completion status
+
+    // Basic validation to ensure fields are filled
+    if (title === '' || author === '' || year === '') {
+        alert('Please fill in all fields.'); // Alert the user if any field is empty
+        return; // Exit the function if validation fails
+    }
+
+    // Create a new book object
+    const newBook = {
+        id: Date.now().toString(), // Unique ID
+        title,
+        author,
+        year,
+        isComplete
+    };
+
+    books.push(newBook); // Add the new book to the books array
+    saveBooks(); // Save the updated books array to localStorage
+    renderBooks(); // Render the updated book list
+    document.getElementById('bookForm').reset(); // Reset the form fields
+}
