@@ -110,3 +110,13 @@ function editBook(bookId) {
         deleteBook(bookId);
     }
 }
+
+// Event listener for the form submission
+document.getElementById('bookForm').addEventListener('submit', addBook);
+
+// Event listener for the search form submission
+document.getElementById('searchBook').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission
+    const searchQuery = document.getElementById('searchBookTitle').value; // Get the search input
+    renderBooks(searchQuery); // Render books based on the search query
+});
