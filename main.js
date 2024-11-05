@@ -56,12 +56,12 @@ function addBook(event) {
 
     const title = document.getElementById('bookFormTitle').value.trim(); // Get the title and trim whitespace
     const author = document.getElementById('bookFormAuthor').value.trim(); // Get the author and trim whitespace
-    const year = document.getElementById('bookFormYear').value.trim(); // Get the year and trim whitespace
+    const year = Number(document.getElementById('bookFormYear').value.trim()); // Convert year to number
     const isComplete = document.getElementById('bookFormIsComplete').checked; // Get the completion status
 
     // Basic validation to ensure fields are filled
-    if (title === '' || author === '' || year === '') {
-        alert('Please fill in all fields.'); // Alert the user if any field is empty
+    if (title === '' || author === '' || isNaN(year)) {
+        alert('Please fill in all fields correctly.'); // Alert the user if any field is empty or year is not a number
         return; // Exit the function if validation fails
     }
 
@@ -70,7 +70,7 @@ function addBook(event) {
         id: Date.now().toString(), // Unique ID
         title,
         author,
-        year,
+        year, 
         isComplete
     };
 
