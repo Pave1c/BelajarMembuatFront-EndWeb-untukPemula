@@ -8,6 +8,7 @@ function loadBooks() {
         books = JSON.parse(storedBooks);
     }
 }
+
 // Function to save books to localStorage
 function saveBooks() {
     localStorage.setItem('books', JSON.stringify(books));
@@ -50,34 +51,35 @@ function renderBooks(searchQuery = '') {
     });
 }
 
+
 // Function to add a new book
 function addBook(event) {
     event.preventDefault(); // Prevent the default form submission
 
-    const title = document.getElementById('bookFormTitle').value.trim(); // Get the title and trim whitespace
-    const author = document.getElementById('bookFormAuthor').value.trim(); // Get the author and trim whitespace
-    const year = Number(document.getElementById('bookFormYear').value.trim()); // Convert year to number
-    const isComplete = document.getElementById('bookFormIsComplete').checked; // Get the completion status
+    const title = document.getElementById('bookFormTitle').value.trim();
+    const author = document.getElementById('bookFormAuthor').value.trim();
+    const year = parseInt(document.getElementById('bookFormYear').value.trim(), 10); // Convert to number
+    const isComplete = document.getElementById('bookFormIsComplete').checked;
 
     // Basic validation to ensure fields are filled
-    if (title === '' || author === '' || isNaN(year)) {
-        alert('Please fill in all fields correctly.'); // Alert the user if any field is empty or year is not a number
-        return; // Exit the function if validation fails
+    if (title === '' || author === '' || isNaN(year)) { // Check if year is a number
+        alert('Please fill in all fields and ensure the year is a valid number.'); 
+        return; 
     }
 
     // Create a new book object
     const newBook = {
-        id: Date.now().toString(), // Unique ID
+        id: Date.now().toString(),
         title,
         author,
-        year, 
+        year, // year is now a number
         isComplete
     };
 
-    books.push(newBook); // Add the new book to the books array
-    saveBooks(); // Save the updated books array to localStorage
-    renderBooks(); // Render the updated book list
-    document.getElementById('bookForm').reset(); // Reset the form fields
+    books.push(newBook);
+    saveBooks();
+    renderBooks();
+    document.getElementById('bookForm').reset();
 }
 
 // Function to toggle book completion status
